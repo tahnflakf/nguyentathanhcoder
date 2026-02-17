@@ -19,12 +19,9 @@
     
     <div id="flash-overlay"></div>
 
-    <div id="music-box">
-        <iframe id="yt-player" width="100" height="100" 
-            src="https://www.youtube.com/embed/e3KwAHfGO9E?enablejsapi=1&loop=1&playlist=e3KwAHfGO9E" 
-            allow="autoplay">
-        </iframe>
-    </div>
+    <audio id="bg-music" loop>
+        <source src="nhạc.mp3" type="audio/mpeg">
+    </audio>
     
     <audio id="sfx-explode"><source src="https://assets.mixkit.co/active_storage/sfx/2007/2007-preview.mp3"></audio>
     <audio id="sfx-open"><source src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
@@ -38,8 +35,7 @@
 
     <h2 id="msg">...</h2>
     
-    <div class="lixi-grid" id="grid">
-        </div>
+    <div class="lixi-grid" id="grid"></div>
 
     <div class="coder-signature">
         Code by Nguyễn Tất Thành
