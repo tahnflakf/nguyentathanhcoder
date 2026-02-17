@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hái Lộc 2026 - Nguyễn Tất Thành</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="entry-overlay" onclick="startApp()">
+        <div class="start-btn">🧧 CHẠM ĐỂ KHAI XUÂN</div>
+    </div>
+
+    <div id="big-lixi-container" onclick="explode()">
+        <div class="big-lixi">福</div>
+        <p class="tap-hint">CHẠM VÀO ĐÂY!</p>
+    </div>
+    
+    <div id="flash-overlay"></div>
+
+    <div id="music-box">
+        <iframe id="yt-player" width="100" height="100" 
+            src="https://www.youtube.com/embed/e3KwAHfGO9E?enablejsapi=1&loop=1&playlist=e3KwAHfGO9E" 
+            allow="autoplay">
+        </iframe>
+    </div>
+    
+    <audio id="sfx-explode"><source src="https://assets.mixkit.co/active_storage/sfx/2007/2007-preview.mp3"></audio>
+    <audio id="sfx-open"><source src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
+    <audio id="sfx-bonus"><source src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3"></audio>
+
+    <h1>🧧 XUÂN 2026 🧧</h1>
+    
+    <div class="turn-counter">
+        Lượt còn lại: <b id="turn-cnt">1</b>
+    </div>
+
+    <h2 id="msg">...</h2>
+    
+    <div class="lixi-grid" id="grid">
+        </div>
+
+    <div class="coder-signature">
+        Code by Nguyễn Tất Thành
+    </div>
+
+    <div id="result-modal" class="modal">
+        <div class="modal-content">
+            <h2 id="modal-title">🎉 CHÚC MỪNG 🎉</h2>
+            <div id="reward"></div>
+            <button id="modal-btn" onclick="closeModal()">Tiếp tục</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

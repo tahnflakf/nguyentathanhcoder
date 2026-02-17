@@ -1,0 +1,136 @@
+:root {
+    --red: #b30000;
+    --gold: #ffd700;
+    --dark-bg: #800000;
+}
+
+body {
+    background: radial-gradient(circle at center, #ff5e00, var(--dark-bg));
+    color: var(--gold);
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    text-align: center;
+    margin: 0; padding: 0;
+    overflow: hidden;
+    height: 100dvh; /* Chiều cao full màn hình */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    touch-action: manipulation;
+}
+
+/* --- OVERLAYS --- */
+#entry-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95); z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+}
+
+#flash-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: white; z-index: 9000; opacity: 0; pointer-events: none; transition: opacity 0.1s;
+}
+
+/* --- BUTTONS & INPUTS --- */
+.start-btn {
+    background: var(--red); color: white; padding: 20px 40px;
+    border-radius: 50px; border: 3px solid var(--gold);
+    font-size: 20px; font-weight: bold;
+    box-shadow: 0 0 20px var(--gold);
+    animation: pulse 1.5s infinite;
+    cursor: pointer;
+}
+
+@keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+
+.turn-counter {
+    background: rgba(0,0,0,0.5); border: 1px solid var(--gold);
+    padding: 5px 20px; border-radius: 20px;
+    margin-bottom: 10px; font-size: 1.2rem; color: white;
+}
+
+#turn-cnt { color: var(--gold); }
+
+/* --- BIG LIXI --- */
+#big-lixi-container {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    z-index: 5000; display: none; width: 80%; max-width: 300px; cursor: pointer;
+}
+
+.big-lixi {
+    width: 100%; aspect-ratio: 2/3;
+    background: linear-gradient(145deg, #ff1a1a, #b30000);
+    border: 5px solid var(--gold); border-radius: 20px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px; color: var(--gold);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+    animation: floatBig 2s infinite ease-in-out;
+}
+
+.tap-hint {
+    margin-top: 15px; font-weight: bold; 
+    text-shadow: 0 0 5px black; animation: pulse 1s infinite;
+}
+
+@keyframes floatBig { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+/* --- GRID LIXI --- */
+.lixi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+    width: 90%; max-width: 350px; margin: 0 auto;
+    opacity: 0; transition: opacity 1s;
+}
+
+.lixi-item {
+    width: 100%; aspect-ratio: 2/3;
+    background: linear-gradient(145deg, #ff1a1a, #b30000);
+    border: 2px solid var(--gold); border-radius: 8px;
+    position: relative; transition: 0.3s;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+}
+
+.lixi-item::after {
+    content: "福"; font-size: 24px; color: var(--red);
+    background: var(--gold); width: 35px; height: 35px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+}
+
+.opening { transform: scale(1.1) rotateY(180deg); opacity: 0; transition: 0.5s; pointer-events: none; }
+
+/* --- MODAL --- */
+.modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); z-index: 10000; align-items: center; justify-content: center;
+}
+
+.modal-content {
+    background: white; color: #333; width: 80%; padding: 30px 20px;
+    border-radius: 20px; border: 4px solid var(--gold); text-align: center;
+}
+
+#reward { font-size: 28px; font-weight: bold; margin: 20px 0; color: #d40000; }
+
+button#modal-btn {
+    background: var(--red); color: white; border: none;
+    padding: 10px 30px; border-radius: 20px; font-size: 16px; cursor: pointer;
+}
+
+/* --- CHỮ KÝ CODER --- */
+.coder-signature {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 12px;
+    font-family: 'Courier New', monospace; /* Font chữ kiểu code */
+    letter-spacing: 1px;
+    z-index: 100;
+    pointer-events: none; /* Không chặn click vào các phần tử khác */
+}
+
+/* --- UTILS --- */
+#yt-player { position: absolute; top: -9999px; }
+h1 { margin: 10px 0; font-size: 2rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+h2#msg { font-size: 1rem; font-weight: normal; margin-bottom: 10px; }
