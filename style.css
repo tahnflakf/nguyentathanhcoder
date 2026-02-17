@@ -52,9 +52,12 @@ body {
 #turn-cnt { color: var(--gold); }
 
 /* --- BIG LIXI --- */
+/* --- BIG LIXI --- */
 #big-lixi-container {
     position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    z-index: 5000; display: none; width: 80%; max-width: 300px; cursor: pointer;
+    z-index: 5000; 
+    display: block; /* ĐỔI TỪ NONE SANG BLOCK ĐỂ HIỆN LUÔN */
+    width: 80%; max-width: 300px; cursor: pointer;
 }
 
 .big-lixi {

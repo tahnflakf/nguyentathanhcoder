@@ -1,23 +1,34 @@
 let currentTurns = 1;
 let canPick = false;
 
-// 1. Hàm khởi động
-function startApp() {
-    // THAY ĐỔI Ở ĐÂY: Phát file nhac.mp3
+// TỰ ĐỘNG CHẠY KHI VÀO WEB
+document.addEventListener('DOMContentLoaded', function() {
     const audio = document.getElementById('bg-music');
-    audio.volume = 0.5; // Chỉnh âm lượng vừa phải (50%)
-    audio.play().catch(error => {
-        console.log("Trình duyệt chặn phát nhạc tự động: ", error);
-    });
-    
-    // Ẩn màn hình chờ, hiện bao to
-    document.getElementById('entry-overlay').style.display = 'none';
-    document.getElementById('big-lixi-container').style.display = 'block';
-    document.getElementById('msg').innerText = "✨ Chạm bao lì xì để khai lộc ✨";
-}
+    audio.volume = 0.5;
 
-// 2. Hàm nổ tung bao lì xì
+    // 1. Cố gắng phát nhạc ngay lập tức
+    var promise = audio.play();
+
+    if (promise !== undefined) {
+        promise.then(_ => {
+            // Tự phát thành công!
+            console.log("Nhạc đã tự phát!");
+        }).catch(error => {
+            // Bị trình duyệt chặn -> Chờ người dùng chạm vào màn hình lần đầu
+            console.log("Chờ tương tác để phát nhạc...");
+            document.body.addEventListener('click', function() {
+                audio.play();
+            }, { once: true }); // Chỉ cần chạy 1 lần duy nhất
+        });
+    }
+});
+
+// Hàm nổ tung bao lì xì (Khi người dùng bấm vào bao to)
 function explode() {
+    // Đảm bảo nhạc nền được bật nếu nãy giờ chưa bật
+    const bgMusic = document.getElementById('bg-music');
+    if (bgMusic.paused) { bgMusic.play(); }
+
     const bigLixi = document.getElementById('big-lixi-container');
     bigLixi.style.pointerEvents = 'none';
     
@@ -41,7 +52,7 @@ function explode() {
     }, 1000);
 }
 
-// 3. Tạo lưới 9 bao lì xì
+// Tạo lưới 9 bao lì xì
 function createGrid() {
     const grid = document.getElementById('grid');
     grid.innerHTML = '';
@@ -53,7 +64,7 @@ function createGrid() {
     }
 }
 
-// 4. Xử lý khi chọn bao
+// Xử lý khi chọn bao
 function pick(el) {
     if(!canPick || currentTurns <= 0) return;
     
